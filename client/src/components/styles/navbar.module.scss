@@ -1,0 +1,86 @@
+.nav{
+  height: 3.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  .left{
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    padding-left: 1.25rem;
+  }
+  .right{
+    width: 100vw;
+    height: 90vh;
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+    background-color: rgb(195, 236, 236);
+    transition: clip-path 0.75s ease-in;
+    clip-path: circle(0%);
+    display: hidden;
+    li{
+      display: flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      img{
+        height: 500%;
+      }
+      input{
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px white solid;
+        &:focus{
+          outline: none;
+        }
+      }
+    }
+  }
+  .hamburger{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    z-index: 10;
+    div{
+      width: 100%;
+      height: 0.25rem;
+      background-color: rgb(255, 255, 255);
+      transition: transform 0.25s linear;
+    }
+  }
+}
+@media only screen and (min-width: 850px) {
+  .nav{
+    .left{
+      padding-left: 4rem;
+    }
+    .right{
+      position: relative;
+      width: 65%;
+      height: 100%;
+      flex-direction: row;
+      clip-path: none;
+      background-color: transparent;
+      transition: 0s;
+    }
+    .hamburger{
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 1536px) {
+  .nav{
+    grid-row: 1/2;
+    grid-column: 1/3;
+  }
+}

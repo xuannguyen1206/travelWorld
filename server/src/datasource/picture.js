@@ -29,7 +29,7 @@ class PictureAPI extends RESTDataSource{
   }
   pictureFormat(picture){
     return {
-      link: picture.urls.regular
+      link: picture.urls.raw
     }
   }
 }
