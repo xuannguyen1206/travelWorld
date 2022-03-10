@@ -7,16 +7,29 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  text-align: center;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 .banter{
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: azure;
+  h2{
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  h1{
+    font-size: 3rem;
+    font-weight: 800;
+  }
   button{
+
     margin-top: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 1rem 1.5rem;
     outline: none;
     border: none;
-    border-radius: 10%;
+    border-radius: 5%;
     &:hover{
       background-color: orange;
       transition: background-color 1s linear;
@@ -27,19 +40,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  h2{
+    color: azure;
+  }
   .carousel{
     margin-top: 1rem;
     padding-top: 60%;
-    width: 50%;
+    width: 45%;
     background-color: aqua;
   }
 }
 
 @media screen and (min-width: 500px) {
   .country{
+   
     .carousel{
-      width: 40%;
-      padding-top: 50%;
+      width: 23%;
+      padding-top:32%;
     }
   }
 }
@@ -55,8 +72,14 @@
     grid-column: 1/2;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 3rem;
+    h1{
+      font-size: 5.5rem;
+    }
+    h2{
+      font-size: 3.5rem;
+    }
   }
   .country{
     grid-row: 2/3;
@@ -65,16 +88,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    h2{
+      font-size: 3.5rem;
+    }
     .carousel{
-      width: 40%;
+      width: 35%;
       padding-top: 50%;
     }
   }
 }
 @media only screen and (min-width: 1536px) {
+  .banter{
+    h1{
+      font-size: 7rem;
+    }
+    h2{
+      font-size: 5rem;
+    }
+  }
   .country{
     .carousel{
-      width: 30%;
+      width: 32%;
       padding-top: 42%;
     }
   }

@@ -12,33 +12,29 @@ function Navbar() {
     menu.current?.classList.toggle('menuActive');
   }
   return ( 
-    <>
-      <Head>
-       <link href="/all.css" rel="stylesheet"></link> 
-      </Head>
-      <nav className={styles.nav}>
-        <div className={styles.left}>
-          <span>Travel World</span>
-        </div>
+    <nav className={styles.nav}>
+      <div className={styles.left}>
+        <span>Travel World</span>
+      </div>
+      
+      <ul ref={menu} className={styles.right}>
+        <li>Home</li>
+        <li>Countries</li>
+        <li>About Us</li>
+        <li>
+          <input type="text" placeholder="Search country"/>
+          <Image src={searchIcon} width={30} height={30}/>
+        </li>
         
-        <ul ref={menu} className={styles.right}>
-          <li>Home</li>
-          <li>Countries</li>
-          <li>About Us</li>
-          <li>
-            <input type="text" placeholder="Search country"/>
-            <Image src={searchIcon} width={30} height={30}/>
-          </li>
-          
-        </ul>
-        <div ref={hamburger} className={styles.hamburger} onClick={hamburgerActive}>  {/* hamburger button  */}
-            <div/>
-            <div/>
-            <div/>
-          </div>
-      </nav>
-    </>
-   
+      </ul>
+      <div ref={hamburger} className={styles.hamburger} onClick={hamburgerActive}>  {/* hamburger button  */}
+          <div/>
+          <div/>
+          <div/>
+        </div>
+    </nav>
+
+  
    );
 }
 

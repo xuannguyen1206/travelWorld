@@ -1,10 +1,22 @@
+import axios from 'axios';
+import { gql,useQuery } from '@apollo/client';
+import client from '../lib/apollo';
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect } from 'react';
 import Navbar from '../components/navbar';
 import styles from '../styles/Home.module.scss';
 
-const Home: NextPage = () => {
+
+interface homeProps {
+  image: Object;
+}
+
+const Home: NextPage<homeProps> = ({image}) => {
+  useEffect(()=>{
+    console.log(image);
+  });
   return (
     <div className={styles.container}>
       <Head>
@@ -15,8 +27,9 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <Navbar/>
         <div className={styles.banter}>
-          <h1>ENJOY THE WORLD</h1>
-          <button>EXPLORE &#8594;</button>
+          <h2>ENJOY THE</h2>
+          <h1>WORLD</h1>
+          <button>EXPLORE NOW &#8594;</button>
         </div>
         <div className={styles.country}>
           <h2>VIETNAM</h2>
@@ -27,4 +40,20 @@ const Home: NextPage = () => {
   )
 }
 
+export async function getServerSideProps(){
+  const { data } = await client.query({
+    query: gql`
+      query Pictures{
+        picture(countryName: "vietnam") {
+          link
+        }
+      }
+    `
+  }) 
+  return {
+    props: {
+      image:data,
+    },
+  }
+}
 export default Home
