@@ -9,12 +9,31 @@ class PictureAPI extends RESTDataSource{
     request.headers.set('Authorization','Client-ID I4DvHa0lATZ62_AujTcSPJM-JZin81zUKR_4nxR7gqc')
   }
   async getCardPicture(countryName){
-    const response = await this.get('search/photos', {
+    let response = await this.get('search/photos', {
       query: countryName,
       page: Math.floor(Math.random() * 100) + 1,
       per_page: 1, 
       orientation: 'portrait'
     });
+    if(response.results.length === 0){ /* some country doesnt have 100 pictures to select */
+      response = await this.get('search/photos', {
+        query: countryName,
+        page: Math.floor(Math.random() * 10) + 1,
+        per_page: 1, 
+        orientation: 'portrait'
+      });
+    } 
+    if(response.results.length === 0){ /* some country doesnt have 10 pictures to select */
+      response = await this.get('search/photos', {
+        query: countryName,
+        page: Math.floor(Math.random() * 3) + 1,
+        per_page: 1, 
+        orientation: 'portrait'
+      });
+    } 
+    if(response.results.length === 0){ /* if that country doesnt have 5 pics, return none */
+      return { link: '' }
+    }
     return this.pictureFormat(response.results[0])
   }
   async getPictures(countryName){
@@ -29,7 +48,7 @@ class PictureAPI extends RESTDataSource{
   }
   pictureFormat(picture){
     return {
-      link: picture.urls.raw
+      link: picture.urls.full
     }
   }
 }

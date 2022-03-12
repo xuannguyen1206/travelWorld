@@ -12,7 +12,7 @@ const typeDefs = gql`
     currencies: Currencies!
   }
   type Picture {
-    link: String!
+    link: String
   }
   type Language{
     name: String!

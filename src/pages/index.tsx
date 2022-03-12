@@ -44,7 +44,13 @@ export async function getServerSideProps(){
   const { data } = await client.query({
     query: gql`
       query Pictures{
-        picture(countryName: "vietnam") {
+        country1:picture(countryName: "Vietnam") {
+          link
+        }
+        country2:picture(countryName: "France") {
+          link
+        }
+        country3:picture(countryName: "Germany") {
           link
         }
       }
@@ -52,7 +58,7 @@ export async function getServerSideProps(){
   }) 
   return {
     props: {
-      image:data.picture.link,
+      image:data,
     },
   }
 }
