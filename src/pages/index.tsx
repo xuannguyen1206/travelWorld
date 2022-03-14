@@ -1,21 +1,37 @@
 import axios from 'axios';
-import { gql,useQuery } from '@apollo/client';
+import { gql } from '@apollo/client';
 import client from '../lib/apollo';
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect } from 'react';
 import Navbar from '../components/navbar';
+import ImageSlider from '../components/imageSlider';
 import styles from '../styles/Home.module.scss';
 
-
 interface homeProps {
-  image: Object;
+  image: Image;
+}
+
+type Image = {
+  country1:CountryImg,
+  country2:CountryImg,
+  country3:CountryImg,
+}
+
+type CountryImg = {
+  link:string
 }
 
 const Home: NextPage<homeProps> = ({image}) => {
+  // const slides = [
+  //   <img src={image.country1.link}></img>,
+  //   <img src={image.country2.link}></img>,
+  //   <img src={image.country3.link}></img>
+  // ]
   useEffect(()=>{
     console.log(image);
+    
   });
   return (
     <div className={styles.container}>
@@ -33,33 +49,35 @@ const Home: NextPage<homeProps> = ({image}) => {
         </div>
         <div className={styles.country}>
           <h2>VIETNAM</h2>
-          <div className={styles.carousel}></div>
+      
+            <ImageSlider/>
+        
         </div>
       </main>
     </div>
   )
 }
 
-export async function getServerSideProps(){
-  const { data } = await client.query({
-    query: gql`
-      query Pictures{
-        country1:picture(countryName: "Vietnam") {
-          link
-        }
-        country2:picture(countryName: "France") {
-          link
-        }
-        country3:picture(countryName: "Germany") {
-          link
-        }
-      }
-    `
-  }) 
-  return {
-    props: {
-      image:data,
-    },
-  }
-}
+// export async function getServerSideProps(){
+//   const { data } = await client.query({
+//     query: gql`
+//       query Pictures{
+//         country1:picture(countryName: "Vietnam") {
+//           link
+//         }
+//         country2:picture(countryName: "France") {
+//           link
+//         }
+//         country3:picture(countryName: "Germany") {
+//           link
+//         }
+//       }
+//     `
+//   }) 
+//   return {
+//     props: {
+//       image:data,
+//     },
+//   }
+// }
 export default Home
