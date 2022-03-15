@@ -28,6 +28,7 @@
     transition: clip-path 0.75s ease-in;
     clip-path: circle(0%);
     display: hidden;
+    z-index: 9;
     li{
       display: flex;
       align-items: center;

@@ -8,18 +8,28 @@ import styles from './styles/imageSlider.module.scss'
 
 function ImageSlider() {
   const slides = [
-    'https://swiperjs.com/demos/images/nature-1.jpg',
-    'https://swiperjs.com/demos/images/nature-2.jpg',
+    'https://images.unsplash.com/photo-1460904041914-f2b315f93560?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMDY2Nzd8MHwxfHNlYXJjaHw0M3x8RnJhbmNlfGVufDB8fHx8MTY0NzMxNjIyNw&ixlib=rb-1.2.1&q=85',
+    'https://images.unsplash.com/photo-1508050919630-b135583b29ab?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMDY2Nzd8MHwxfHNlYXJjaHw0NHx8RnJhbmNlfGVufDB8fHx8MTY0NzMxNjIyNw&ixlib=rb-1.2.1&q=85',
     'https://swiperjs.com/demos/images/nature-3.jpg',
     
   ]
+  
   return ( 
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
-        loop = {true}
         centeredSlides={true}
-        slidesPerView={1.25 }
+        slidesPerView={ 1.25 }
+        breakpoints={{
+          1536: {
+            slidesPerView:2.5,
+            coverflowEffect:{
+              rotate: 50,
+              depth:150,
+              modifier:1
+            },
+          },
+        }}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
@@ -39,34 +49,6 @@ function ImageSlider() {
             </SwiperSlide> 
           )
         })}
-
-        {/* <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-        </SwiperSlide>  */}
       </Swiper>
   );
 }
