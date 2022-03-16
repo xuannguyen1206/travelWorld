@@ -5,7 +5,7 @@ class PictureAPI extends RESTDataSource{
     super();
     this.baseURL = 'https://api.unsplash.com/'
   }
-  willSendRequest(request) {
+  willSendRequest(request) { /* attach API key before sneding querries */
     request.headers.set('Authorization','Client-ID I4DvHa0lATZ62_AujTcSPJM-JZin81zUKR_4nxR7gqc')
   }
   async getCardPicture(countryName){
@@ -29,6 +29,35 @@ class PictureAPI extends RESTDataSource{
         page: Math.floor(Math.random() * 3) + 1,
         per_page: 1, 
         orientation: 'portrait'
+      });
+    } 
+    if(response.results.length === 0){ /* if that country doesnt have 5 pics, return none */
+      return { link: '' }
+    }
+    return this.pictureFormat(response.results[0])
+  }
+  async getLandscapePicture(countryName){
+    let response = await this.get('search/photos', {
+      query: countryName,
+      page: Math.floor(Math.random() * 100) + 1,
+      per_page: 1, 
+      orientation: 'landscape'
+    });
+    if(response.results.length === 0){ /* some country doesnt have 100 pictures to select */
+      response = await this.get('search/photos', {
+        query: countryName,
+        page: Math.floor(Math.random() * 10) + 1,
+        per_page: 1, 
+        orientation: 'landscape'
+
+      });
+    } 
+    if(response.results.length === 0){ /* some country doesnt have 10 pictures to select */
+      response = await this.get('search/photos', {
+        query: countryName,
+        page: Math.floor(Math.random() * 3) + 1,
+        per_page: 1, 
+        orientation: 'landscape'
       });
     } 
     if(response.results.length === 0){ /* if that country doesnt have 5 pics, return none */

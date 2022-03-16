@@ -9,7 +9,12 @@ const typeDefs = gql`
     population: Int!
     language: Language!
     flag: String!
-    currencies: Currencies!
+    currencies: Currencies
+    picture: HomePicture
+  }
+  type HomePicture{
+    portrait: Picture
+    landscape: Picture
   }
   type Picture {
     link: String
@@ -25,9 +30,11 @@ const typeDefs = gql`
   type Query {
     countries: [Country!]!
     country( countryName: String! = "", countryCode: String! = ""): Country
-    picture( countryName: String!): Picture
+    picture( countryName: String! ): Picture
     pictures( countryName: String! ): [Picture!]!
-  }
+    test: HomePicture
+  }  
+  
 ` 
 
 module.exports = typeDefs;

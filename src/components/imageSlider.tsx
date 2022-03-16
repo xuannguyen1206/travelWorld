@@ -5,17 +5,17 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation"
 import styles from './styles/imageSlider.module.scss'
+import { useRef } from "react";
 
-function ImageSlider() {
-  const slides = [
-    'https://images.unsplash.com/photo-1460904041914-f2b315f93560?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMDY2Nzd8MHwxfHNlYXJjaHw0M3x8RnJhbmNlfGVufDB8fHx8MTY0NzMxNjIyNw&ixlib=rb-1.2.1&q=85',
-    'https://images.unsplash.com/photo-1508050919630-b135583b29ab?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMDY2Nzd8MHwxfHNlYXJjaHw0NHx8RnJhbmNlfGVufDB8fHx8MTY0NzMxNjIyNw&ixlib=rb-1.2.1&q=85',
-    'https://swiperjs.com/demos/images/nature-3.jpg',
-    
-  ]
-  
+interface sliderProp {
+  changeSlide: (value:number) => void
+  slides: Array<string> 
+}
+
+function ImageSlider({changeSlide, slides}: sliderProp) {
   return ( 
-      <Swiper
+      <Swiper 
+        onSlideChange={(swiper) => changeSlide(swiper.activeIndex)} 
         effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
@@ -42,9 +42,9 @@ function ImageSlider() {
         modules={[EffectCoverflow, Pagination, Navigation]}
         className={styles.container}
       > 
-        {slides.map((slide)=> {
+        {slides.map((slide,index)=> {
           return ( 
-            <SwiperSlide className={styles.swiperSlide}>
+            <SwiperSlide className={styles.swiperSlide}  key={index}>
               <img src={slide}/>
             </SwiperSlide> 
           )
