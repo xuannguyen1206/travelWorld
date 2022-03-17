@@ -11,7 +11,7 @@ class PictureAPI extends RESTDataSource{
   async getCardPicture(countryName){
     let response = await this.get('search/photos', {
       query: countryName,
-      page: Math.floor(Math.random() * 100) + 1,
+      page: Math.floor(Math.random() * 30) + 1,
       per_page: 1, 
       orientation: 'portrait'
     });
@@ -39,7 +39,7 @@ class PictureAPI extends RESTDataSource{
   async getLandscapePicture(countryName){
     let response = await this.get('search/photos', {
       query: countryName,
-      page: Math.floor(Math.random() * 100) + 1,
+      page: Math.floor(Math.random() * 30) + 1,
       per_page: 1, 
       orientation: 'landscape'
     });

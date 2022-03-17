@@ -1,19 +1,29 @@
 .main{
   height: 100vh;
   width: 100vw;
-  background-position: center;
-  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   font-family: 'Nanum Gothic', sans-serif;
 }
+.image{
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  object-fit: cover;
+  z-index: -3;
+  transition: opacity 1s ease-in ;
+}
+
 .banter{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: Black;
   h2{
     font-size: 1rem;
     font-weight: 700;

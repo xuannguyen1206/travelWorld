@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/index"
+    "start": "nodemon ./src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,10 +14,10 @@
     "apollo-datasource-rest": "^3.5.1",
     "apollo-server": "^3.6.3",
     "dotenv": "^16.0.0",
-    "graphql": "^16.3.0",
-    "nodemon": "^2.0.15"
+    "graphql": "^16.3.0"
   },
   "devDependencies": {
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "nodemon": "^2.0.15"
   }
 }
