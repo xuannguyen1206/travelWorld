@@ -64,7 +64,11 @@ const Home: NextPage<homeProps> = ( { countryData }) => {
   )
 }
 
-export async function getServerSideProps(){
+export async function getServerSideProps({ req,res } : any){
+  res.setHeader(
+    'Cache-Control',
+    ' s-maxage=0, must-revalidate'
+  )
   const { data } = await client.query({
     query: gql`  
      query Countries {
