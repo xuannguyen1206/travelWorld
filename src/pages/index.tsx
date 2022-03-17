@@ -65,7 +65,7 @@ const Home: NextPage<homeProps> = ( { countryData }) => {
 }
 
 export async function getServerSideProps({ req,res } : any){
-  req.setHeader(
+  res.setHeader(
     'Cache-Control',
     'public, s-maxage=10,must-revalidate'
   )
