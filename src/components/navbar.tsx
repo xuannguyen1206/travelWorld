@@ -3,6 +3,7 @@ import styles from './styles/navbar.module.scss';
 import searchIcon from '../asset/search.png';
 import Head from 'next/head'
 import Image from 'next/image';
+import Link from 'next/link';
 
 function Navbar() {
   const hamburger = useRef<HTMLDivElement>(null);
@@ -18,9 +19,9 @@ function Navbar() {
       </div>
       
       <ul ref={menu} className={styles.right}>
-        <li>Home</li>
-        <li>Countries</li>
-        <li>About Us</li>
+        <li><Link href='/'>Home</Link></li>
+        <li><Link href='/countries'>Countries</Link></li>
+        <li><Link href='/aboutUs'>About Us</Link></li>
         <li>
           <input type="text" placeholder="Search country"/>
           <Image src={searchIcon} width={30} height={30}/>

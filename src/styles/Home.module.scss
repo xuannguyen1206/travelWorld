@@ -33,7 +33,6 @@
     font-weight: 800;
   }
   button{
-
     margin-top: 1rem;
     padding: 1rem 1.5rem;
     outline: none;
@@ -70,7 +69,7 @@
   .main{
     display: grid;
     grid-template-rows: 3.5rem 1fr;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
   }
   .banter{
     grid-row: 2/3;
@@ -97,12 +96,15 @@
       font-size: 3.5rem;
     }
     .carousel{
-      width: 35%;
+      width: 100%;
       padding-top: 50%;
     }
   }
 }
 @media only screen and (min-width: 1536px) {
+  .main{
+    grid-template-columns: 2fr 1fr;
+  }
   .banter{
     h1{
       font-size: 7rem;
@@ -113,7 +115,7 @@
   }
   .country{
     .carousel{
-      width: 32%;
+      width: 100%;
       padding-top: 42%;
     }
   }

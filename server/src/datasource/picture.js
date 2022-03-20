@@ -6,7 +6,7 @@ class PictureAPI extends RESTDataSource{
     this.baseURL = 'https://api.unsplash.com/'
   }
   willSendRequest(request) { /* attach API key before sneding querries */
-    request.headers.set('Authorization','Client-ID I4DvHa0lATZ62_AujTcSPJM-JZin81zUKR_4nxR7gqc')
+    request.headers.set('Authorization','Client-ID 9yPhP8O7Pr3An8N8xTkvfbdFJ2RsRdgRaJ0L2uoKZ2s')
   }
   async getCardPicture(countryName){
     let response = await this.get('search/photos', {

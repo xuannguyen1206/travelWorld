@@ -20,16 +20,16 @@ function ImageSlider({changeSlide, slides}: sliderProp) {
         grabCursor={true}
         centeredSlides={true}
         slidesPerView={ 1.25 }
-        breakpoints={{
-          1536: {
-            slidesPerView:2.5,
-            coverflowEffect:{
-              rotate: 50,
-              depth:150,
-              modifier:1
-            },
-          },
-        }}
+        // breakpoints={{
+        //   1536: {
+        //     slidesPerView:2.5,
+        //     coverflowEffect:{
+        //       rotate: 50,
+        //       depth:150,
+        //       modifier:1
+        //     },
+        //   },
+        // }}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,

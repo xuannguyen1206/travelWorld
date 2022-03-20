@@ -31,7 +31,7 @@ class CountryAPI extends RESTDataSource{
   }
   countryFormat(country){
     return {
-      name: country.name,
+      name: (country.name.includes(')') ? country.name.split('(')[0] : country.name ),
       capital: country.capital,
       region: country.subregion,
       timezone: country.timezones[0],
