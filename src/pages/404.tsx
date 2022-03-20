@@ -6,7 +6,7 @@ export default function Custom404() {
   const [dot,setDot] = useState<any>('.');
 
   function addDot(){
-    setDot((dot)=> {
+    setDot((dot: string)=> {
       if(dot === '...'){
         setDot('.')
       } else {
