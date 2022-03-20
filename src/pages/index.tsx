@@ -6,11 +6,12 @@ import { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
 import ImageSlider from '../components/imageSlider';
 import styles from '../styles/Home.module.scss';
+import axios from 'axios';
 
 interface homeProps {
   countryData: [countryData] 
 }
-interface countryData {
+interface countryData { 
   name: string
   picture: HomePicture 
 }
@@ -37,6 +38,9 @@ const Home: NextPage<homeProps> = ( { countryData }) => {
   useEffect(()=>{
     changeCountryInfo();
   },[currentSlide]);
+  useEffect(()=> {
+    console.log(countryData);
+  },[])
   return (
     <>
       <Head>
@@ -64,11 +68,7 @@ const Home: NextPage<homeProps> = ( { countryData }) => {
   )
 }
 
-export async function getServerSideProps({ req,res } : any){
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10,must-revalidate'
-  )
+export async function getServerSideProps(){
   const { data } = await client.query({
     query: gql`  
      query Countries {
@@ -81,11 +81,11 @@ export async function getServerSideProps({ req,res } : any){
         landscape {
           link
         }
+      }
     }
   }
-}
-    `
-  }) 
+  `
+  })
   return {
     props: {
       countryData:data.countries,
