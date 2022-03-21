@@ -38,6 +38,7 @@
       a{
         animation: rainbow 60s linear infinite forwards;
         text-decoration: none;
+        color: inherit;
         &:visited{
           text-decoration: none;
           color: inherit;

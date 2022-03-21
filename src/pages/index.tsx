@@ -1,5 +1,4 @@
-import { gql } from '@apollo/client';
-import client from '../lib/apollo';
+import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react';
@@ -68,6 +67,17 @@ const Home: NextPage<homeProps> = ({ countryData }) => {
 
 
 export async function getServerSideProps(){
+  const client = new ApolloClient({
+    uri: "http://localhost:4000/",
+    ssrMode: true,
+    defaultOptions:{
+      query:{
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'all'
+      }
+    },
+    cache: new InMemoryCache()
+  });
   const { data } = await client.query({
     query: gql`  
      query Countries {

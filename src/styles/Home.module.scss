@@ -48,6 +48,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  
   .carousel{
     margin-top: 1rem;
     padding-top: 60%;
@@ -94,6 +96,7 @@
     align-items: center;
     h2{
       font-size: 3.5rem;
+      margin-bottom: 2rem;
     }
     .carousel{
       width: 100%;
@@ -103,7 +106,7 @@
 }
 @media only screen and (min-width: 1536px) {
   .main{
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1.7fr 1fr;
   }
   .banter{
     h1{
