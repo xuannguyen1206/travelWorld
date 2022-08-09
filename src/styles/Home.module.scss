@@ -24,6 +24,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  user-select: none;
   h2{
     font-size: 1rem;
     font-weight: 700;
@@ -49,7 +50,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  
+  font-size: calc(1.5rem + 1vw);
   .carousel{
     margin-top: 1rem;
     padding-top: 60%;

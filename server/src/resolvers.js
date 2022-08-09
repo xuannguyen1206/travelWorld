@@ -1,19 +1,19 @@
 const resolvers = {
   Query:{
     countries: async (_,__,{ dataSources }) => {
-      return dataSources.CountryAPI.getAllCountries();
+      return dataSources.CountryAPI.getHomePageCountries();
     },
     country: async (parent,{ countryName, countryCode },{ dataSources }) => {
       // if (parent.name) return dataSources.CountryAPI.getCountryByName(parent.name);
       if(countryName) return dataSources.CountryAPI.getCountryByName(countryName);
       else return dataSources.CountryAPI.getCountryByCode(countryCode);
-    },
+    }, /* not in use */
     pictures: async (_,{ countryName },{ dataSources }) => {
       return dataSources.PictureAPI.getPictures(countryName);
-    },
+    }, /* not un use */
     picture: async (parent, { countryName }, { dataSources }) => {
       return dataSources.PictureAPI.getCardPicture(countryName);
-    },
+    }, /* not in use */
     
   },
   Country:{

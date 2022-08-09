@@ -10,8 +10,8 @@ const server = new ApolloServer({
   resolvers,
   dataSources: () => {
     return {
-    CountryAPI: new CountryAPI(),
-    PictureAPI: new PictureAPI(),
+      CountryAPI: new CountryAPI(),
+      PictureAPI: new PictureAPI(),
     }
   }
 });

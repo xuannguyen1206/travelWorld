@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -44,7 +44,7 @@ function ImageSlider({changeSlide, slides}: sliderProp) {
       > 
         {slides.map((slide,index)=> {
           return ( 
-            <SwiperSlide className={styles.swiperSlide}  key={index}>
+            <SwiperSlide className={styles.swiperSlide} key={index}>
               <img src={slide}/>
             </SwiperSlide> 
           )

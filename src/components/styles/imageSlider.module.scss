@@ -1,7 +1,15 @@
+.container{
+  &:hover{
+    opacity: 0;
+    transition: opacity 1s linear 2s;// fade slowly on hover
+  }
+  transition: opacity 1s linear; // opacity ->1 slowly when mouse gone
 
+}
 .swiperSlide {
   background-position: center;
   background-size: cover;
+
 }
 .container {
   width: 75%;
@@ -19,6 +27,7 @@
     object-fit: cover;
   }
 }
+
 @media only screen and (min-width: 640px) {
   .container{
     width: 40%;

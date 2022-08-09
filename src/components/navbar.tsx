@@ -4,6 +4,8 @@ import searchIcon from '../asset/search.png';
 import Head from 'next/head'
 import Image from 'next/image';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar() {
   const hamburger = useRef<HTMLDivElement>(null);
@@ -24,7 +26,7 @@ function Navbar() {
         <li><Link href='/aboutUs'>About Us</Link></li>
         <li>
           <input type="text" placeholder="Search country"/>
-          <Image src={searchIcon} width={30} height={30}/>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
         </li>
         
       </ul>

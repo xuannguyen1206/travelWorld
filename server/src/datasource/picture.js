@@ -1,5 +1,4 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
-
 class PictureAPI extends RESTDataSource{
   constructor(){
     super();
@@ -34,7 +33,7 @@ class PictureAPI extends RESTDataSource{
       });
     } 
     if(response.results.length === 0){ /* if that country doesnt have 5 pics, return none */
-      return { link: '' }
+      return { link: 'https://1d59b73swr1f1swu2v451xcx-wpengine.netdna-ssl.com/wp-content/uploads/2016/09/green-leaves-Sameera-Madusanka-2160x1440.jpeg' }
     }
     return this.pictureFormat(response.results[0])
   }
@@ -63,7 +62,7 @@ class PictureAPI extends RESTDataSource{
       });
     } 
     if(response.results.length === 0){ /* if that country doesnt have 5 pics, return none */
-      return { link: '' }
+      return { link: 'https://1d59b73swr1f1swu2v451xcx-wpengine.netdna-ssl.com/wp-content/uploads/2016/09/green-leaves-Sameera-Madusanka-2160x1440.jpeg' }
     }
     return this.pictureFormat(response.results[0])
   }

@@ -33,7 +33,7 @@ const Home: NextPage<homeProps> = ({ countryData }) => {
   }
   useEffect(()=>{
     changeCountryInfo();
-  },[currentSlide]);
+  },[countryData,currentSlide]);
   useEffect(()=> {
   },[])
   return (
@@ -68,7 +68,8 @@ const Home: NextPage<homeProps> = ({ countryData }) => {
 
 export async function getServerSideProps(){
   const client = new ApolloClient({
-    uri: "https://travel-world-graphql.herokuapp.com/",
+    // uri: "https://travel-world-graphql.herokuapp.com/",
+    uri: "http://localhost:4000",
     ssrMode: true,
     defaultOptions:{
       query:{

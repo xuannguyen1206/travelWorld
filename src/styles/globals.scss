@@ -7,6 +7,10 @@ body{
   overflow: hidden;
   color: rgb(241, 217, 105);
   animation: rainbow 60s linear forwards infinite;
+  input{
+    color: rgb(241, 217, 105);
+    animation: rainbow 60s linear forwards infinite;  
+  }
 }
 
 .menuActive{
