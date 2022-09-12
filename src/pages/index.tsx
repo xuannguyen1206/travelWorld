@@ -69,7 +69,7 @@ const Home: NextPage<homeProps> = ({ countryData }) => {
 
 export async function getServerSideProps(){
   const client = new ApolloClient({
-    uri: "http://localhost:4000/",
+    uri: "https://travel-world-graphql.herokuapp.com/",
     ssrMode: true,
     defaultOptions:{
       query:{
