@@ -1,16 +1,33 @@
-*{
+*,html{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scrollbar-color: yellow gray;
+  scrollbar-width: thin;
+}
+body::-webkit-scrollbar {
+  width: 4px;               /* width of the entire scrollbar */
+  height: 100%;
+  background-color: gray;
+}
+body::-webkit-scrollbar-thumb { 
+  background: yellow; 
 }
 
+span{
+  white-space: pre-wrap;
+}
 body{
-  overflow: hidden;
-  color: rgb(241, 217, 105);
+  overflow-x: hidden;
   animation: rainbow 60s linear forwards infinite;
+  scrollbar-width: none;
   input{
     color: rgb(241, 217, 105);
     animation: rainbow 60s linear forwards infinite;  
   }
+  font-family: 'Nanum Gothic', sans-serif;
+
 }
 
 .menuActive{

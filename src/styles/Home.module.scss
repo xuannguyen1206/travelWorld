@@ -4,9 +4,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  font-family: 'Nanum Gothic', sans-serif;
 }
-.image{
+.backgroundImage{
   position: absolute;
   height: 100vh;
   width: 100%;
@@ -24,6 +23,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 15%;
   user-select: none;
   h2{
     font-size: 1rem;
@@ -51,12 +51,14 @@
   align-items: center;
   text-align: center;
   font-size: calc(1.5rem + 1vw);
-  .carousel{
-    margin-top: 1rem;
-    padding-top: 60%;
-    width: 45%;
-    background-color: aqua;
-  }
+  >div{ /* hide slider on hover */
+    &:hover{
+      opacity: 0;
+      transition: opacity 1s linear 2s;// fade slowly on hover
+    }
+    transition: opacity 1s linear; // opacity ->1 slowly when mouse gone
+  
+  } 
 }
 
 @media screen and (min-width: 500px) {
@@ -81,11 +83,12 @@
     flex-direction: column;
     align-items: flex-start;
     padding-left: 3rem;
+    padding-top: 5%;
     h1{
-      font-size: 5.5rem;
+      font-size: 4rem;
     }
     h2{
-      font-size: 3.5rem;
+      font-size: 2.5rem;
     }
   }
   .country{

@@ -16,8 +16,8 @@ interface countryData {
 }
 
 interface HomePicture{
-  portrait: Picture
-  landscape: Picture
+  portrait: [Picture]
+  landscape: [Picture]
 }
 interface Picture {
   link: string
@@ -27,11 +27,12 @@ const Home: NextPage<homeProps> = ({ countryData }) => {
   const [currentSlide,setCurrentSlide] = useState<number>(0);
   const [currentCountry,setCurrentCountry] = useState<string>(countryData[0].name); /* set Name for the country */
   const slides: Array<string> = [];
-  countryData.map((country) => slides.push(country.picture.portrait.link));
+  countryData.map((country) => slides.push(country.picture.portrait[0].link));
   function changeCountryInfo(){
     setCurrentCountry(countryData[currentSlide].name);
   }
   useEffect(()=>{
+    console.log(countryData)
     changeCountryInfo();
   },[countryData,currentSlide]);
   useEffect(()=> {
@@ -46,7 +47,7 @@ const Home: NextPage<homeProps> = ({ countryData }) => {
       </Head>
       <main className={styles.main}>
         {countryData.map((country,index)=>{
-          return <img style={{opacity:`${currentSlide === index ? 1 : 0}`}} className={`${styles.image} ${styles.one}`} src={country.picture.landscape.link}/>
+          return <img style={{opacity:`${currentSlide === index ? 1 : 0}`}} className={`${styles.backgroundImage} ${styles.one}`} src={country.picture.landscape[0].link}/>
         })}
         { /* background image for main */}
         <Navbar/>
@@ -68,7 +69,7 @@ const Home: NextPage<homeProps> = ({ countryData }) => {
 
 export async function getServerSideProps(){
   const client = new ApolloClient({
-    uri: "https://travel-world-graphql.herokuapp.com/",
+    uri: "http://localhost:4000/",
     ssrMode: true,
     defaultOptions:{
       query:{
@@ -79,21 +80,21 @@ export async function getServerSideProps(){
     cache: new InMemoryCache()
   });
   const { data } = await client.query({
-    query: gql`  
-     query Countries {
-      countries {
-        name
-        picture {
-          portrait {
-            link
-        }
-        landscape {
-          link
+    query: gql`
+      query Homepage{
+        countries(quantity:3 ) {
+          name
+          picture {
+            portrait(quantity:1 ) {
+              link
+            }
+            landscape(quantity:1 ) {
+              link
+            }
+          }
         }
       }
-    }
-  }
-  `
+    `
   })
   return {
     props: {

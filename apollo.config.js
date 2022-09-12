@@ -1,6 +1,6 @@
 module.exports = {
   client: {
-    name: 'Space Explorer [web]',
+    name: 'TravelWorld',
     service: 'travelWorld-76rsqd@current',
   },
 };

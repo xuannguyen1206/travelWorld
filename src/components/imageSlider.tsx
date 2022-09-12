@@ -8,14 +8,14 @@ import styles from './styles/imageSlider.module.scss'
 import { useRef } from "react";
 
 interface sliderProp {
-  changeSlide: (value:number) => void
+  changeSlide?: (value:number) => void
   slides: Array<string> 
 }
 
 function ImageSlider({changeSlide, slides}: sliderProp) {
   return ( 
       <Swiper 
-        onSlideChange={(swiper) => changeSlide(swiper.activeIndex)} 
+        onSlideChange={(swiper) => {  if(changeSlide) changeSlide(swiper.activeIndex)}} 
         effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}

@@ -2,22 +2,28 @@ const { gql } = require('apollo-server');
 const typeDefs = gql`
   type Country {
     name: String!
-    capital: String
+    capital: City
+    borders: [Country]
     region: String!
-    timezone: String!
     area: Float
     population: Int!
-    language: Language!
-    flag: String!
     currencies: Currencies
-    picture: HomePicture
+    flag: String!
+    picture: Pictures
   }
-  type HomePicture{
-    portrait: Picture
-    landscape: Picture
+  type City{
+    name: String
+    picture: Pictures
   }
-  type Picture {
-    link: String
+  type Pictures{
+    portrait( quantity:Float!): [Pic]
+    landscape( quantity:Float!): [Pic]
+  }
+  type Pic{
+    id:String
+    link:String
+    des: String
+    location:String 
   }
   type Language{
     name: String!
@@ -28,11 +34,10 @@ const typeDefs = gql`
     symbol: String!
   }
   type Query {
-    countries: [Country!]!
+    countries( quantity:Float! ) : [Country]!
     country( countryName: String! = "", countryCode: String! = ""): Country
-    picture( countryName: String! ): Picture
-    pictures( countryName: String! ): [Picture!]!
-    test: HomePicture
+    test(quantity:Float!):[Country]
+    testPicture(place:String!, quantity:Float!): [Pic]
   }  
   
 ` 

@@ -1,21 +1,19 @@
-.container{
-  &:hover{
-    opacity: 0;
-    transition: opacity 1s linear 2s;// fade slowly on hover
-  }
-  transition: opacity 1s linear; // opacity ->1 slowly when mouse gone
+// .container{
+//   &:hover{
+//     opacity: 0;
+//     transition: opacity 1s linear 2s;// fade slowly on hover
+//   }
+//   transition: opacity 1s linear; // opacity ->1 slowly when mouse gone
 
-}
+// }
 .swiperSlide {
   background-position: center;
   background-size: cover;
-
 }
 .container {
-  width: 75%;
-  height: 50vh;
-  max-width: 500px;
-  min-height: 200px;
+  width: 65%;
+  height: 100%;
+  max-width: 300px;
   background-color: transparent;
   display: block;
   position: relative;
@@ -39,13 +37,16 @@
 }
 @media only screen and (min-width: 1280px) {
   .container{
-    width: 50%;
+    width: 60%;
     height: 65vh;
+    max-width: 500px;
+
   }
 }
 @media only screen and (min-width: 1536px) {
   .container{
-    width: 70%;
-    height: 60vh;
+    width: 62%;
+    height: 65vh;
+    min-height: 525px;
   }
 }
