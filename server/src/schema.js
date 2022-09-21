@@ -3,13 +3,13 @@ const typeDefs = gql`
   type Country {
     name: String!
     capital: City
-    borders: [Country]
     region: String!
     area: Float
     population: Int!
     currencies: Currencies
     flag: String!
     picture: Pictures
+    borders: [Country]
   }
   type City{
     name: String
@@ -23,11 +23,8 @@ const typeDefs = gql`
     id:String
     link:String
     des: String
+    blur:String
     location:String 
-  }
-  type Language{
-    name: String!
-    nativeName: String!
   }
   type Currencies{
     name: String!

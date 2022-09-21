@@ -1,0 +1,447 @@
+.main{
+}
+
+
+
+.section{
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+  .description{
+    height: 40vh;
+    width: 100%;
+    min-height: 250px;
+    max-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: black;
+    .name{
+      font-family: 'Kalam', cursive;
+      color: orange;
+      font-size: 2rem;
+    }
+    h1{
+      width: 70%;
+      display: inline;
+      text-align: center;
+      font-weight: 800;
+    }
+    h2{
+      font-size: 1.1rem;
+    }
+    h4{
+      font-size: 0.9rem;
+    }
+    p{
+      width: 85%;
+      text-align: center;
+    }
+    
+ 
+  }
+  .pics{
+    width: 100%;
+    min-height: 300px;
+    figcaption{
+      color: black;
+      text-align: center;
+    }
+  }
+}
+.imgContainer{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: filter 1.2s ease-in-out;
+}
+#home{
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  h1{
+    display: block;
+  }
+  .description{
+    width: auto;
+  }
+  #intro{
+    text-align: center;
+    span{
+      font-size: 2.25rem;
+      font-family: 'Kalam', cursive;
+      animation: rainbow 60s linear forwards infinite;  
+    }
+    h1{
+      font-size: 4rem;
+      animation: rainbow 60s linear forwards infinite reverse;  
+    }
+    h2{
+      font-size: 1.5rem;
+      font-family: 'Kalam', cursive;
+      animation: rainbow 60s linear forwards infinite;  
+    }
+  }
+  #imgLocation{
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    font-size: 1.25rem;
+    font-family: 'Kalam', cursive;
+    animation: rainbow 60s linear forwards infinite;  
+    display: flex;
+    align-items: flex-end;
+    max-width: 50%;
+    height: 30%;
+  }
+  .mainImg{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  .sideImg{
+    width: 50%;
+    height: 10vh;
+    min-height: 60px;
+    position: absolute;
+    bottom: 1rem;
+    right: 0;
+    padding-right: 0.1rem;
+    display: flex;
+    justify-content: flex-end;
+    .imgContainer{
+      margin-left: 2rem;
+      width: 40%;
+      box-shadow: 0 0 10px #ccc;
+      cursor: pointer;
+      img{
+        border-radius:1%;
+      }
+    }
+  }
+
+}
+#capital{
+  .pics{
+    display: flex;
+    justify-content: space-around;
+    align-items: center ;
+    max-width: 550px;
+    .imgContainer{
+      height: auto;
+    }
+    #small{
+      width: 35%;
+    }
+    #big{
+      width: 50%;
+    }
+  }
+}
+#briefLook{
+  .statistics{
+    width: 85%;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    .info{
+      margin-bottom: 0.75rem;
+      color: #40e640;
+    }
+    .catergory{
+      color: rgb(160, 160, 160);
+    } 
+  }
+  figcaption{
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+}
+#border{
+  .pics{
+    .polaroid{
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+      cursor: pointer;
+      &:hover{
+        transform: scale(1.05);
+        transition: transform 0.5s;
+      }
+    }
+    .cardContainer{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10%;
+      row-gap: 1.5rem;
+      .countryCard{
+        width: 150px;
+        height: 220px;
+        .imgContainer{
+          height: 90%;
+        }
+      }
+
+    }
+    figcaption{
+      height: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Kalam', cursive;
+      font-size: 0.75rem;
+    }
+  }
+}
+@media only screen and (min-width: 768px) {
+  .section{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 3rem;
+    .description{
+      h1{
+        font-size: 2rem;
+      }
+      h2{
+        font-size: 1.3rem;
+      }
+      h4{
+        font-size: 1.1rem;
+      }
+      p{
+        font-size: 1.2rem;
+      }
+      .name{
+        font-size: 2.5rem;
+      }
+    }
+  }
+  #home{
+    #intro{
+      span{
+        font-size: 2.75rem;
+      }
+      h1{
+        font-size: 4,5rem;
+      }
+      h2{
+        font-size: 1.75rem;
+      }
+    }
+  }
+  #capital{
+    .description{
+      width: 90%;
+    }
+  }
+  #briefLook{
+    .statistics{
+      width: 750px;
+    }
+    figcaption{
+      font-size: 1.2rem;
+    }
+  }
+  #border{
+    .pics{
+      .cardContainer{
+        .countryCard{
+          width: 200px;
+          height: 300px;
+        }
+      }
+      figcaption{
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .section{
+    margin-bottom: 4rem;
+    .description{
+      width: 85%;
+    }
+  }
+  #home{
+    #intro{
+      span{
+        font-size: 3.25rem;
+      }
+      h1{
+        font-size: 5rem;
+      }
+      h2{
+        font-size: 2.25rem;
+      }
+    }
+    .sideImg{
+      max-width: 400px;
+      height: 12vh;
+      .imgContainer{
+        margin-left: 2.5rem;
+      }
+    }
+    #imgLocation{
+      font-size: 1.5rem;
+    }
+  }
+  #capital{
+   
+  }
+  
+}
+@media only screen and (min-width: 1280px) {
+  .section{
+    margin-bottom: 5rem;
+    .description{
+      .name{
+        font-size:4rem;
+      }
+      h1{
+        font-size: 3.5rem;
+      }
+      h2{
+        font-size: 1.5rem;
+      }
+      h4{
+        font-size: 1.2rem;
+      }
+      p{
+        font-size: 1.3rem;
+      }
+    }
+  }
+  #home{
+    align-items: flex-start;
+    #intro{
+      span{
+        font-size: 4.25rem;
+      }
+      h1{
+        font-size: 6.5rem;
+      }
+      h2{
+        font-size: 3rem;
+      }
+    }
+    #imgLocation{
+      font-size: 2rem;
+      padding-left: 3rem;
+      bottom: 5%;
+      height: 20%;
+    }
+    .sideImg{
+      max-width: none;
+      width: 40%;
+      height: 15vh;
+      bottom: 5%;
+      justify-content: space-around;
+    }
+
+  }
+  #capital{
+    flex-direction: row;
+    align-items: center;
+    .description{
+      width: 40%;
+      justify-content: center;
+      align-items: flex-start;
+      h1{
+        text-align: left;
+      }
+      p{
+        text-align: left;
+      }
+    }
+    .pics{
+      width: 60%;
+      max-width: 750px;
+    }
+  }
+  #briefLook{
+    figcaption{
+      font-size: 1.5rem;
+    }
+  }
+  #border{
+    .pics{
+      .cardContainer{
+        gap: 7%;
+        row-gap: 2.5rem;
+        .countryCard{
+          width: 240px;
+          height: 350px;
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width: 1536px) {
+  #home{
+    #intro{
+      span{
+        font-size: 5rem;
+      }
+      h1{
+        font-size: 7.5rem;
+      }
+      h2{
+        font-size: 3.5rem;
+      }
+    }
+    #imgLocation{
+      font-size: 2.25rem;
+      padding-left: 3rem;
+    }
+    .sideImg{
+      width: 35%;
+      height: 18vh;
+    }
+
+  }
+  #border{
+    .pics{
+      .cardContainer{
+        gap: 3%;
+        row-gap: 2.5rem;
+        .countryCard{
+          width: 300px;
+          height: 450px;
+        }
+      }
+      figcaption{
+        font-size: 1.6rem;
+      }
+    }
+    
+  }
+}
+
+@keyframes rainbow {
+  from {
+    color: #6666ff;
+  }
+  10% {
+    color: #0099ff;
+  }
+  50% {
+    color: #9dff00;
+  }
+  75% {
+    color: #ff3399;
+  }
+  100% {
+    color: #6666ff;
+  }
+}

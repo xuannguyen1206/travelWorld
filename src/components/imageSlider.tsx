@@ -15,21 +15,12 @@ interface sliderProp {
 function ImageSlider({changeSlide, slides}: sliderProp) {
   return ( 
       <Swiper 
+        //
         onSlideChange={(swiper) => {  if(changeSlide) changeSlide(swiper.activeIndex)}} 
         effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
         slidesPerView={ 1.25 }
-        // breakpoints={{
-        //   1536: {
-        //     slidesPerView:2.5,
-        //     coverflowEffect:{
-        //       rotate: 50,
-        //       depth:150,
-        //       modifier:1
-        //     },
-        //   },
-        // }}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,

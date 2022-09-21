@@ -7,32 +7,19 @@ class CountryAPI extends RESTDataSource{
     this.baseURL = 'https://restcountries.com/v2/';
   }
   async getCountryByName(countryName){
-    countryName = countryName.charAt(0).toUpperCase() + countryName.slice(1); /* input processing */ 
-    if(!Object.values(this.countryCodes).includes(countryName)) return null
-    const response = await this.get(`name/${countryName}`);
-    return this.countryFormat(response[0]);/*not in use*/
+    countryName = countryName.charAt(0).toUpperCase() + countryName.slice(1).toLowerCase(); /* input processing */ 
+    if(!Object.values(this.countryCodes).includes(countryName)){
+      return null
+    } 
+    
+   return await this.getCountryByCode(Object.keys(this.countryCodes).find((key)=> this.countryCodes[key] === countryName));
+   
   }
   async getCountryByCode(countryCode){
     if(!this.countryCodes[countryCode]) return null /* if the country is not on the list */
     const response = await this.get(`https://restcountries.com/v2/alpha/${countryCode}`);
     return this.countryFormat(response);
   }
-  // async getHomePageCountries(){ /* get 3 random countries for homepage */ 
-  //   const choosenCountries = [];
-  //   for(let i = 0; i < 3; i++){
-  //     choosenCountries.push(this.countryCodes[Math.floor(Math.random()*(this.countryCodes.length))])
-  //   }
-  //   console.log(choosenCountries);
-  //   const response = await Promise.all([
-  //     this.getCountryByCode(choosenCountries[0]),
-  //     this.getCountryByCode(choosenCountries[1]),
-  //     this.getCountryByCode(choosenCountries[2])
-  //   ])
-  //   // const response = await this.getCountryByCode(choosenCountries[1]);
-  //   console.log(response);
-  //   return response;
-
-  // }
   async getRandomCountries(quantity){ /* get 3 random countries for homepage */ 
     const choosenCountries = [];
     for(let i = 0; i < quantity; i++){

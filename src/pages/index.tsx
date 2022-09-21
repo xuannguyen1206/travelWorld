@@ -32,7 +32,7 @@ const Home: NextPage<homeProps> = ({ countryData }) => {
     setCurrentCountry(countryData[currentSlide].name);
   }
   useEffect(()=>{
-    console.log(countryData)
+    console.log(countryData);
     changeCountryInfo();
   },[countryData,currentSlide]);
   useEffect(()=> {
