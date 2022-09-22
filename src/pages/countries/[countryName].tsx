@@ -15,6 +15,7 @@ import React from 'react';
 import Rotate from 'react-reveal/Rotate';
 /* @ts-ignore */
 import Fade from 'react-reveal/Fade';
+import Link from 'next/link';
 
 interface Country{
   name: string
@@ -79,7 +80,9 @@ export default function specificCuontry({countryData}: {countryData : Country}) 
   const [mainLandscape,setMainLandscape] = useState(0); // current set of landscape
   const [leftsideLandscape,setLeftsideLandscape] = useState(1);
   const [rightsideLandscape,setRightsideLandscape] = useState(2);
+  const [showImg,setShowImg] = useState(true)
   const landscapePics = useRef<any>([]);
+
   function landscapeSwap(sideLandscape:any){
     const tempMainLandscape = sideLandscape
     const tempSideLandscape = mainLandscape
@@ -107,14 +110,24 @@ export default function specificCuontry({countryData}: {countryData : Country}) 
     },1200)
     // use active pseudo class to add animation
   }
+  function resetImages() {
+    // to regain the blur of images if there is a client navigation
+    setShowImg(!showImg);
+    const timer = setTimeout(()=>{
+      setShowImg((showImg) => !showImg)
+    },500);
+  }
 
   useEffect(()=>{
-  },[])
+    setLandscapes(countryData.picture.landscape);
+    setPortraits(countryData.picture.portrait);
+    resetImages();
+  },[countryData])
   
   return (
     <main className={styles.main}>
       <Navbar/>
-      <section className={styles.section} id={styles.home}>
+      <section className={styles.section} id={styles.home}> 
         <div className={styles.description}>
           <header id={styles.intro}>
             <span>DISCOVER</span>
@@ -124,19 +137,25 @@ export default function specificCuontry({countryData}: {countryData : Country}) 
           <figcaption id={styles.imgLocation}>{landscapes[mainLandscape].location}</figcaption>
         </div>
         <div className={styles.mainImg}>
-          <figure ref={(element) => landscapePics.current[0] =(element)} className={styles.imgContainer}>
-            <Image placeholder='blur' blurDataURL={landscapes[mainLandscape].blur} 
-            src={landscapes[mainLandscape].link} layout='fill' objectFit='cover' objectPosition='center' unoptimized/>
-          </figure>
+          { showImg &&
+            <figure ref={(element) => landscapePics.current[0] =(element)} className={styles.imgContainer}>
+              <Image placeholder='blur' blurDataURL={landscapes[mainLandscape].blur} 
+              src={landscapes[mainLandscape].link} layout='fill' objectFit='cover' objectPosition='center' unoptimized/>
+            </figure>
+          }
         </div>
         <div className={styles.sideImg}>
           <figure ref={(element) => landscapePics.current[1] =(element)} className={styles.imgContainer} onClick={()=>landscapeSwap(leftsideLandscape)}>
+          { showImg &&
             <Image placeholder='blur' blurDataURL={landscapes[leftsideLandscape].blur}
              src={landscapes[leftsideLandscape].link} layout='fill' objectFit='cover' unoptimized/>
+          }
           </figure>
           <figure ref={(element) => landscapePics.current[2] =(element)} className={styles.imgContainer} onClick={()=>landscapeSwap(rightsideLandscape)}>
+          { showImg &&
             <Image placeholder='blur' blurDataURL={landscapes[rightsideLandscape].blur}
             src={landscapes[rightsideLandscape].link} layout='fill' objectFit='cover' unoptimized/>
+          }
           </figure>
         </div>    
       </section>
@@ -151,14 +170,18 @@ export default function specificCuontry({countryData}: {countryData : Country}) 
           </div>
           <div className={styles.pics}>
             <figure className={styles.imgContainer} id={styles.small}>
-              <Image src={countryData.capital.picture.portrait[0].link} 
-              placeholder='blur' blurDataURL={countryData.capital.picture.portrait[0].blur}
-              width = {250} height ={328} layout='responsive'/>
-            </figure>
+              { showImg &&
+                <Image src={countryData.capital.picture.portrait[0].link} 
+                placeholder='blur' blurDataURL={countryData.capital.picture.portrait[0].blur}
+                width = {250} height ={328} layout='responsive'/>
+              }
+              </figure>
             <figure className={styles.imgContainer} id={styles.big}>
-              {/* @ts-ignore */}
-              <Image src={countryData.capital.picture.portrait[1].link} placeholder='blur' blurDataURL={countryData.capital.picture.portrait[1].blur}
-              width = {355} height = {470} layout='responsive'/>
+              { showImg &&
+                /* @ts-ignore */
+                <Image src={countryData.capital.picture.portrait[1].link} placeholder='blur' blurDataURL={countryData.capital.picture.portrait[1].blur}
+                width = {355} height = {470} layout='responsive'/>
+              }
             </figure>
           </div>
       </section>
@@ -201,13 +224,18 @@ export default function specificCuontry({countryData}: {countryData : Country}) 
               {countryData.borders?.map((country) => {
                 if(country === null) return;
                 return (
-                  <figure className={`${styles.countryCard} ${styles.polaroid}`}>
-                    <div className={styles.imgContainer}>
-                      <Image src={country.picture.portrait[0].link} placeholder='blur'
-                      blurDataURL={country.picture.portrait[0].blur} layout='fill'/>
-                    </div>
-                    <figcaption>{country.name}</figcaption>
-                  </figure>
+                  <Link href={`/countries/${country.name}`}>
+                    <figure  className={`${styles.countryCard} ${styles.polaroid}`}>
+                      <div className={styles.imgContainer}>
+                      { showImg &&
+                        <Image src={country.picture.portrait[0].link} placeholder='blur'
+                        blurDataURL={country.picture.portrait[0].blur} layout='fill'/>
+                      }
+                      </div>
+                      <figcaption>{country.name}</figcaption>
+                    </figure>
+                  </Link>
+
                 )
               })}
             </div>
@@ -220,6 +248,7 @@ export default function specificCuontry({countryData}: {countryData : Country}) 
 export async function getServerSideProps(context:any){
   const client = new ApolloClient({
     uri: "https://travel-world-graphql.herokuapp.com/",
+    // uri: "http://localhost:4000/",
     ssrMode: true,
     defaultOptions:{
       query:{
@@ -285,3 +314,5 @@ export async function getServerSideProps(context:any){
     }
   }
 }
+
+

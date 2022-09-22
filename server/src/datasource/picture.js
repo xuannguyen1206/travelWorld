@@ -42,7 +42,6 @@ class PictureAPI extends RESTDataSource{
   }
   async getPicLocation(picId){
     let response = await this.get(`photos/${picId}`);
-    console.log(response.location)
     return(response.location.name);
   }
   pictureFormat(picture){

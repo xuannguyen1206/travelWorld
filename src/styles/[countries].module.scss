@@ -79,6 +79,7 @@
       animation: rainbow 60s linear forwards infinite;  
     }
     h1{
+      width: 100%;
       font-size: 4rem;
       animation: rainbow 60s linear forwards infinite reverse;  
     }
@@ -367,6 +368,9 @@
     .pics{
       width: 60%;
       max-width: 750px;
+      #big{
+        width: 43%;
+      }
     }
   }
   #briefLook{

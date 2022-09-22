@@ -6,6 +6,7 @@ import Navbar from '../components/navbar';
 import ImageSlider from '../components/imageSlider';
 import styles from '../styles/Home.module.scss';
 import axios from 'axios';
+import Link from 'next/link';
 
 interface homeProps {
   countryData: [countryData] 
@@ -57,7 +58,9 @@ const Home: NextPage<homeProps> = ({ countryData }) => {
           <button>EXPLORE NOW &#8594;</button>
         </div>
         <div className={styles.country}>
-          <h2>{currentCountry}</h2>
+          <Link href={`/countries/${currentCountry}`}>
+            <h2>{currentCountry}</h2>
+          </Link>
           <ImageSlider slides = { slides } changeSlide = {setCurrentSlide}/>
         </div>
       </main>

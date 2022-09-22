@@ -7,12 +7,18 @@ class CountryAPI extends RESTDataSource{
     this.baseURL = 'https://restcountries.com/v2/';
   }
   async getCountryByName(countryName){
-    countryName = countryName.charAt(0).toUpperCase() + countryName.slice(1).toLowerCase(); /* input processing */ 
-    if(!Object.values(this.countryCodes).includes(countryName)){
+    countryName = countryName.split(" ");
+    countryName = countryName.map((word) => {
+      word = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(); 
+      // capitalize each word in country name
+      return word
+    })
+    countryName = countryName.join(" ") /* input processing */ 
+    if(!Object.values(this.countryCodes).find(country=> country.includes(countryName))){
       return null
     } 
     
-   return await this.getCountryByCode(Object.keys(this.countryCodes).find((key)=> this.countryCodes[key] === countryName));
+   return await this.getCountryByCode(Object.keys(this.countryCodes).find((key)=> this.countryCodes[key].includes(countryName)));
    
   }
   async getCountryByCode(countryCode){
@@ -25,7 +31,6 @@ class CountryAPI extends RESTDataSource{
     for(let i = 0; i < quantity; i++){
       choosenCountries.push(Object.keys(this.countryCodes)[Math.floor(Math.random()*(Object.keys(this.countryCodes).length))])
     }
-    console.log(choosenCountries);
     let promises = [];
     for(let i = 0; i < quantity; i++){
       promises.push(this.getCountryByCode(choosenCountries[i]))

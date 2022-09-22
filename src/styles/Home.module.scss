@@ -51,6 +51,9 @@
   align-items: center;
   text-align: center;
   font-size: calc(1.5rem + 1vw);
+  h2{
+    cursor: pointer;
+  }
   >div{ /* hide slider on hover */
     &:hover{
       opacity: 0;
