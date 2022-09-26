@@ -3,7 +3,6 @@ let decodeBlurHash,getImgFromArr;
 import('./utils.mjs').then((utils => {
   decodeBlurHash =  utils.decodeBlurHash;
   getImgFromArr = utils.getImgFromArr;
-  console.log(typeof getImgFromArr(decodeBlurHash('LWAn.QMytRI;c[smW=ofI]t7V@t7',64,64)));
 }))
 class PictureAPI extends RESTDataSource{
   constructor(){
