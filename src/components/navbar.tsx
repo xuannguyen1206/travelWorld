@@ -44,7 +44,6 @@ function Navbar() {
       <div className={styles.left}>
         <span>Travel World</span>
       </div>
-      
       <ul ref={menu} className={styles.right}>
         <li><Link href='/'>Home</Link></li>
         <li><Link href='/countries'>Countries</Link></li>

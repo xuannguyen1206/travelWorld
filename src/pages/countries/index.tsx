@@ -11,6 +11,9 @@ import axios from 'axios';
 import Fade from 'react-reveal/Fade';
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import Link from 'next/link';
+import headerGeneration from '../../utils/headerGeneration';
+import { route } from 'next/dist/server/router';
+import { useRouter } from 'next/router';
 
 interface Country{
   name: string
@@ -29,6 +32,7 @@ export default function countries({countryData}:{countryData:[Country]}) {
   const [showImg,setShowImg] = useState(false);
   const [quote,setQuote] = useState('');
   const [author,setAuthor] = useState('');
+  const router = useRouter()
   const quotesKeywords = ['freedom','life','inspiration']
   function onOffImg(){
     setShowImg(!showImg);
@@ -46,7 +50,9 @@ export default function countries({countryData}:{countryData:[Country]}) {
     },3500)
   },[])
   return (
-  <main className={styles.main}>
+  <>
+    {headerGeneration(router)}
+    <main className={styles.main}>
       <figure className={styles.bgImg}/>
       <Navbar/>
       <section className={styles.quote}>
@@ -75,8 +81,9 @@ export default function countries({countryData}:{countryData:[Country]}) {
           })}
         </section>
       </Fade>
-
-  </main>
+    </main>
+  </>
+  
   );
 }
 
