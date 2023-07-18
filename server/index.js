@@ -1,8 +1,8 @@
 const { ApolloServer, gql } = require('apollo-server');
-const CountryAPI = require('./datasource/country');
-const PictureAPI = require('./datasource/picture');
-const resolvers = require('./resolvers');
-const typeDefs = require('./schema');
+const CountryAPI = require('./src/datasource/country');
+const PictureAPI = require('./src/datasource/picture');
+const resolvers = require('./src/resolvers');
+const typeDefs = require('./src/schema');
 require('dotenv').config();
   
 const server = new ApolloServer({
