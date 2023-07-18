@@ -1,5 +1,4 @@
 import {decodeBlurHash} from 'fast-blurhash';
-
 /**
  * @function getDataUrlFromArr
  * @param {Uint8ClampedArray} arr
@@ -7,7 +6,10 @@ import {decodeBlurHash} from 'fast-blurhash';
  * @param {int} h
  * @returns {string}
  */
-import { createCanvas,createImageData } from 'canvas'
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const { createCanvas,ImageData } = require('@napi-rs/canvas');
+
 function getDataUrlFromArr(arr, w, h) {
   if(typeof w === 'undefined' || typeof h === 'undefined') {
     w = h = Math.sqrt(arr.length / 4);
@@ -18,7 +20,7 @@ function getDataUrlFromArr(arr, w, h) {
     var ctx = canvas.getContext('2d');  
     canvas.width = w;
     canvas.height = h;
-    var imgData = ctx.createImageData(w, h);
+    var imgData = new ImageData(w, h);
     imgData.data.set(arr);
     ctx.putImageData(imgData, 0, 0); 
     return canvas.toDataURL();
@@ -26,7 +28,7 @@ function getDataUrlFromArr(arr, w, h) {
     // for node which doesnt have default canvas element
     const canvas = createCanvas(w, h)
     const ctx = canvas.getContext('2d')
-    const imgData = createImageData(w,h)
+    const imgData = new ImageData(w,h)
     imgData.data.set(arr);
     ctx.putImageData(imgData,0,0) 
     return canvas.toDataURL();
