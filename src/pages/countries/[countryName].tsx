@@ -17,6 +17,7 @@ import Rotate from 'react-reveal/Rotate';
 import Fade from 'react-reveal/Fade';
 import Link from 'next/link';
 import headerGeneration from '../../utils/headerGeneration';
+import 'dotenv/config';
 
 interface Country{
   name: string
@@ -50,32 +51,6 @@ interface Currencies{
 }
 
 export default function specificCuontry({countryData}: {countryData : Country})  {
-  // const portraits = [
-  //   {
-  //     "link": "https://images.unsplash.com/photo-1571146200473-28327150d304?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzMTIwMTB8MHwxfHNlYXJjaHw0MDN8fFZpZXRuYW18ZW58MHwxfHx8MTY2MzQzMTI1MA&ixlib=rb-1.2.1&q=80",
-  //     "des": "Drinks with Bamboo straw"
-  //   },
-  //   {
-  //     "link": "https://images.unsplash.com/photo-1567118117415-c80572e28e9d?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzMTIwMTB8MHwxfHNlYXJjaHw0MDR8fFZpZXRuYW18ZW58MHwxfHx8MTY2MzQzMTI1MA&ixlib=rb-1.2.1&q=80",
-  //     "des": "the top of Sapa\n\nFollow to get more picture: instagram.com/andreeew.hn"
-  //   },
-  //   {
-  //     "link": "https://images.unsplash.com/photo-1633515255762-e3454bd99ccb?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzMTIwMTB8MHwxfHNlYXJjaHw0MDV8fFZpZXRuYW18ZW58MHwxfHx8MTY2MzQzMTI1MA&ixlib=rb-1.2.1&q=80",
-  //     "des": "Da Nang after the pandemic"
-  //   }
-  // ];
-  // const landscapes = [{
-  //   "link": "https://images.unsplash.com/photo-1650864080866-984702191ec1?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzMTIwMTF8MHwxfHNlYXJjaHwxMTV8fFZpZXRuYW18ZW58MHwwfHx8MTY2MzQzMDIwMA&ixlib=rb-1.2.1&q=80",
-  //   "location": "Ta Van, Sa Pa, Lao Cai, Vietnam"
-  // },
-  // {
-  //   "link": "https://images.unsplash.com/photo-1580912348148-7f8ff7ef4337?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzMTIwMTF8MHwxfHNlYXJjaHwxMTZ8fFZpZXRuYW18ZW58MHwwfHx8MTY2MzQzMDIwMA&ixlib=rb-1.2.1&q=80",
-  //   "location": "20 Đường 23/10, Phương Sơn, Thành phố Nha Trang, Khanh Hoa Province, Vietnam"
-  // },
-  // {
-  //   "link": "https://images.unsplash.com/photo-1650197404160-8d08f76002c0?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzMTIwMTF8MHwxfHNlYXJjaHwxMTd8fFZpZXRuYW18ZW58MHwwfHx8MTY2MzQzMDIwMA&ixlib=rb-1.2.1&q=80",
-  //   "location": "Phong Phú, Cầu Kè, Trà Vinh, Vietnam"
-  // }];
   const [landscapes,setLandscapes] = useState<[Pic]>(countryData.picture.landscape)
   const [portraits,setPortraits] = useState<[Pic]>(countryData.picture.portrait)
   const [mainPortrait,setMainPortrait] = useState(0);
@@ -255,7 +230,7 @@ export default function specificCuontry({countryData}: {countryData : Country}) 
 
 export async function getServerSideProps(context:any){
   const client = new ApolloClient({
-    uri: "https://travel-world-graphql.herokuapp.com/",
+    uri: process.env.SERVER_URL,
     // uri: "http://localhost:4000/",
     ssrMode: true,
     defaultOptions:{
@@ -316,7 +291,6 @@ export async function getServerSideProps(context:any){
       name: context.query.countryName
     }
   })
-  console.log(data)
   return {
     props: {
       countryData: data.country,

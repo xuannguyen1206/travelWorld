@@ -14,6 +14,7 @@ import Link from 'next/link';
 import headerGeneration from '../../utils/headerGeneration';
 import { route } from 'next/dist/server/router';
 import { useRouter } from 'next/router';
+import 'dotenv/config';
 
 interface Country{
   name: string
@@ -89,7 +90,7 @@ export default function countries({countryData}:{countryData:[Country]}) {
 
 export async function getServerSideProps(){
   const client = new ApolloClient({
-    uri: "https://travel-world-graphql.herokuapp.com/",
+    uri: process.env.SERVER_URL,
     ssrMode: true,
     defaultOptions:{
       query:{
