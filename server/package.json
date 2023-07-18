@@ -14,7 +14,6 @@
     "apollo-datasource": "^3.3.1",
     "apollo-datasource-rest": "^3.5.1",
     "apollo-server": "^3.6.3",
-    "canvas": "^2.10.1 --build-from-source",
     "dotenv": "^16.0.0",
     "fast-blurhash": "^1.0.1",
     "graphql": "^16.3.0"
