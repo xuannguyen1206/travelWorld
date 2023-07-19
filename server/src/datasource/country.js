@@ -1,5 +1,5 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
-
+const https = require('https');
 class CountryAPI extends RESTDataSource{
   constructor(){
     super();
@@ -23,7 +23,27 @@ class CountryAPI extends RESTDataSource{
   }
   async getCountryByCode(countryCode){
     if(!this.countryCodes[countryCode]) return null /* if the country is not on the list */
-    const response = await this.get(`https://restcountries.com/v2/alpha/${countryCode}`);
+    const response = await new Promise((resolve, reject) => {
+      https.get(`https://restcountries.com/v2/alpha/${countryCode}`, {rejectUnauthorized:false}, (res) => {
+        let data = '';
+        res.on('data', (chunk) => {
+          data += chunk;
+        });
+
+        res.on('end', () => {
+          try {
+            const jsonData = JSON.parse(data);
+            resolve(jsonData); // Resolve the promise with the parsed JSON data
+          } catch (error) {
+            reject(error); // Reject the promise if JSON parsing fails
+          }
+        });
+
+        res.on('error', (err) => {
+          reject(err); // Reject the promise with the error if any
+        });
+      });
+    });
     return this.countryFormat(response);
   }
   async getRandomCountries(quantity){ /* get 3 random countries for homepage */ 
